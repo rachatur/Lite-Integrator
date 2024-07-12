@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Process List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Process List</h1>
+    <table>
+        <tr>
+            <th>Request ID</th>
+            <th>File Name</th>
+            <th>Process ID</th>
+            <th>Status</th>
+            <th>Error Message</th>
+        </tr>
+        {% for process in processes %}
+        <tr>
+            <td>{{ process.request_id }}</td>
+            <td>{{ process.file_name }}</td>
+            <td>{{ process.process_id }}</td>
+            <td class="status-{{ process.status }}">{{ process.status }}</td>
+            <td>{{ process.error_message }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'upload_file' %}">Upload Another File</a>
+</body>
+</html>
